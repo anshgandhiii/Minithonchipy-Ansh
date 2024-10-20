@@ -36,7 +36,7 @@ const WomenSupport = () => {
       id: 2,
       name: "Safe Haven Foundation",
       focus: "Domestic Violence Support",
-      image: "https://images.unsplash.com/photo-1573497019830-dd7a55ba93f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=300&q=80"
+      image: "https://reddotfoundation.in/assets/images/home/Home_banner1.jpg"
     },
     {
       id: 3,
