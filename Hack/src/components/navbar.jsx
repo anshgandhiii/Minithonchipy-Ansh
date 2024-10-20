@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { User } from 'lucide-react';
-import { Link ,useNavigate} from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
     const [visible, setVisible] = useState(true);
@@ -8,7 +8,7 @@ const Navbar = () => {
 
     // Alert Button Handler
     const handleAlertClick = () => {
-        alert('Baachaoo Baachaoo');
+        alert('Message is sent!');
     };
 
     const handleScroll = () => {
@@ -26,13 +26,14 @@ const Navbar = () => {
             window.removeEventListener('scroll', handleScroll);
         };
     }, [lastScrollY]);
+
     const navigate = useNavigate(); // Initialize useNavigate
 
     const handleProfileClick = () => {
         navigate('/u/profile'); // Redirect to /u/profile
     };
-    return (
 
+    return (
         <header
             className={`fixed inset-x-0 top-0 z-30 mx-auto w-full max-w-screen-md border border-gray-500 py-3 md:top-6 md:rounded-3xl lg:max-w-screen-lg backdrop-blur-sm bg-white/10 transition-transform duration-300 ${visible ? 'translate-y-0' : '-translate-y-full'}`}
         >
@@ -55,7 +56,7 @@ const Navbar = () => {
                             className="inline-block rounded-lg px-2 py-1 text-md font-bold text-gray-900 transition-all duration-200 hover:bg-gray-100 hover:text-black hover:rounded-full"
                             to="/u" // Redirect to the dashboard
                         >
-                            Home 
+                            Home
                         </Link>
                         <Link
                             className="inline-block rounded-lg px-2 py-1 text-md font-bold text-gray-900 transition-all duration-200 hover:bg-gray-100 hover:text-black hover:rounded-full"
@@ -84,12 +85,20 @@ const Navbar = () => {
                             Login
                         </Link>
                         <button
-            className="inline-flex items-center justify-center rounded-full bg-gray-200 p-2 text-gray-600 transition-all duration-150 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2"
-            onClick={handleProfileClick} // Set onClick handler
-        >
-            <User size={24} />
-            <span className="sr-only">Profile</span>
-        </button>
+                            className="inline-flex items-center justify-center rounded-full bg-gray-200 p-2 text-gray-600 transition-all duration-150 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2"
+                            onClick={handleProfileClick} // Set onClick handler
+                        >
+                            <User size={24} />
+                            <span className="sr-only">Profile</span>
+                        </button>
+                        {/* New Alert Button */}
+                        <button
+                            className="bg-red-600 text-white inline-flex items-center justify-center rounded-full bg-gray-200 p-2 text-gray-600 transition-all duration-150 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2"
+                            onClick={handleAlertClick} // Set onClick handler for alert
+                        >
+                            <span className="sr-only ">Send Alert</span>
+                            Alert
+                        </button>
                     </div>
                 </div>
             </div>

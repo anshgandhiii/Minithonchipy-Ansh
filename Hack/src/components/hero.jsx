@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import Gymvideo1 from './img/Hack1.mp4';
 import Gymvideo2 from './img/video2.mp4';
 import Gymvideo3 from './img/video3.mp4';
+import { Link } from 'react-router-dom';
 
 function HeroSection() {
   const videoRef = useRef(null);
@@ -57,9 +58,10 @@ function HeroSection() {
           Achieve your ideal body with our expertly designed workout routines. Start your journey to a healthier, stronger you today!
         </p>
         <div className="flex flex-col lg:flex-row items-start space-y-4 lg:space-y-0 lg:space-x-4">
-          <button className="px-6 py-2 bg-[#eb5e28] text-white rounded-md font-semibold hover:bg-orange-600 transition duration-200 w-full lg:w-auto">
+          
+          <Link to="login" className="px-6 py-2  bg-pink-500 text-white rounded-md font-semibold hover: text-pink-500 transition duration-200 w-full lg:w-auto">
             Get Started
-          </button>
+          </Link>
         </div>
       </div>
     </div>

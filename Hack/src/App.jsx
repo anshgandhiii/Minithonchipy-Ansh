@@ -33,15 +33,12 @@ function App() {
           <Route path="realtime-tracking" element={<RealTimeTracking />} />
           <Route path= "fit" element={<Fit/>}/>
           <Route path="carrer" element={<JobAndCareerSupport />} />
-          <Route path="health-tracking" element={<Health />} />
-          
+          <Route path="mentalHealth" element={<Health />} />
         </Route>
         
           {/* Nested routes */}
       </Routes>
-      
-        </Router>
-    
+    </Router>
   ); 
   };
 export default App;

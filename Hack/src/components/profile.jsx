@@ -10,8 +10,8 @@ export default function UserProfile() {
     email: "jane.doe@example.com",
   });
   const [emergencyContacts, setEmergencyContacts] = useState([
-    { name: "John Doe", phone: "+1 (555) 987-6543" },
-    { name: "Emma Smith", phone: "+1 (555) 456-7890" },
+    { name: "Dip Jain", phone: "+1 (555) 987-6543" },
+    { name: "Ansh Gandhi", phone: "+1 (555) 456-7890" },
   ]);
   const [newContact, setNewContact] = useState({ name: "", phone: "" });
   const [color, setColor] = useState("#ff69b4");
@@ -57,7 +57,7 @@ export default function UserProfile() {
       </div>
 
       <div className="flex flex-col lg:flex-row gap-8">
-        <div className="lg:w-1/3 bg-[#f7f1d9] backdrop-blur-md rounded-lg shadow-md p-6">
+        <div className="lg:w-1/3 bg-[#f9f9f9] backdrop-blur-md rounded-lg shadow-md p-6"> {/* Updated color */}
           <h2 className="text-2xl font-bold mb-4" style={{ color: "var(--theme-color)" }}>Theme Color</h2>
           <div
             className="w-full h-20 rounded-md cursor-pointer mb-4"
@@ -69,7 +69,7 @@ export default function UserProfile() {
           )}
         </div>
 
-        <div className="bg-[#f7f1d9] backdrop-blur-md rounded-lg shadow-md p-6 lg:w-2/3">
+        <div className="bg-[#f9f9f9] backdrop-blur-md rounded-lg shadow-md p-6 lg:w-2/3"> {/* Updated color */}
           <h2 className="text-2xl font-bold mb-4" style={{ color: "var(--theme-color)" }}>User Profile</h2>
           <div className="space-y-4">
             <div className="flex items-center space-x-4">
@@ -106,7 +106,7 @@ export default function UserProfile() {
         </div>
       </div>
 
-      <div className="bg-[#f7f1d9] backdrop-blur-md rounded-lg shadow-md p-6 mt-8">
+      <div className="bg-[#f9f9f9] backdrop-blur-md rounded-lg shadow-md p-6 mt-8"> {/* Updated color */}
         <h2 className="text-2xl font-bold mb-4" style={{ color: "var(--theme-color)" }}>Emergency Contacts</h2>
         <div className="space-y-4">
           {emergencyContacts.map((contact, index) => (

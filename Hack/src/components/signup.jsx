@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const SignInCard = () => {
     return (
@@ -52,7 +53,7 @@ const SignInCard = () => {
                     </div>
                     <div className="mt-5 flex items-center justify-between"> {/* Reduced margin */}
                         <span className="border-b w-1/5 md:w-1/4"></span>
-                        <a href="#" className="text-xs text-gray-500 uppercase">or sign up</a>
+                        <Link to="/signin" className="text-xs text-gray-500 uppercase">or sign up</Link>
                         <span className="border-b w-1/5 md:w-1/4"></span>
                     </div>
                 </div>
