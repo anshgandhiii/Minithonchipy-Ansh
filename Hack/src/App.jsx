@@ -8,6 +8,7 @@ import Legal from './components/legal';
 import RealTimeTracking from './components/RealTimeTracking';
 import Layout from './components/Layout'
 import Land from './components/landing'
+import JobAndCareerSupport from './components/JobAndCareerSupport';
 import Dashboard from './components/dashboard'
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
           <Route path="profile" element={<Profile />} />
           <Route path="legal" element={<Legal />} />
           <Route path="realtime-tracking" element={<RealTimeTracking />} />
+          <Route path="carrer" element={<JobAndCareerSupport />} />
         </Route>
         
           {/* Nested routes */}
