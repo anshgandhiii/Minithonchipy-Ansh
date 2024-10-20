@@ -1,157 +1,94 @@
-"use client";
-import React, { useState, useEffect } from "react";
-import { HexColorPicker } from "react-colorful";
+import React from 'react';
+import { AlertTriangle, Heart, Activity, Users, Scale, Briefcase } from 'lucide-react';
+import { Carousel } from 'react-responsive-carousel';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
-const AdminPanel = () => {
-  const [color, setColor] = useState("#3b82f6"); // Default color (blue)
+const DashboardFeature = ({ icon, title, description }) => (
+  <div className="rounded-lg shadow-lg transform transition duration-500 hover:scale-105 bg-base-200">
+    <div className="p-10 flex flex-col items-center justify-center">
+      <div className="bg-base-100 rounded-full p-4 shadow-lg">
+        {icon}
+      </div>
+      <h3 className="text-xl font-bold mt-4 text-center">{title}</h3>
+      <p className="text-gray-500 mt-2 text-center">{description}</p>
+    </div>
+  </div>
+);
 
-  // Helper function to adjust brightness
-  const adjustColorBrightness = (col, amt) => {
-    let usePound = false;
-    if (col[0] === "#") {
-      col = col.slice(1);
-      usePound = true;
-    }
-    let num = parseInt(col, 16);
-    let r = (num >> 16) + amt;
-    let b = ((num >> 8) & 0x00ff) + amt;
-    let g = (num & 0x0000ff) + amt;
-    return (
-      (usePound ? "#" : "") +
-      (g | (b << 8) | (r << 16)).toString(16).padStart(6, "0")
-    );
-  };
-
-  // Function to apply color to CSS variables
-  const applyColorToStyles = (color) => {
-    document.documentElement.style.setProperty("--theme-color", color);
-    document.documentElement.style.setProperty(
-      "--theme-color-dark",
-      adjustColorBrightness(color, -20)
-    );
-    document.documentElement.style.setProperty(
-      "--theme-color-light",
-      adjustColorBrightness(color, 20)
-    );
-  };
-
-  const handleColorChange = (newColor) => {
-    setColor(newColor);
-    applyColorToStyles(newColor);
-  };
-
-  // Apply color when the component loads
-  useEffect(() => {
-    applyColorToStyles(color);
-  }, []);
+const Dashboard = () => {
+  const features = [
+    {
+      icon: <AlertTriangle className="w-8 h-8 text-red-500" />,
+      title: "Real-Time Tracking & Safe Routes",
+      description: "Share location, send alerts, and find safe routes based on user feedback and official ratings.",
+    },
+    {
+      icon: <Heart className="w-8 h-8 text-pink-500" />,
+      title: "Health & Mental Wellness",
+      description: "Track menstrual cycles, access health tips, and connect with mental health resources.",
+    },
+    {
+      icon: <Activity className="w-8 h-8 text-green-500" />,
+      title: "Fitness & Nutrition Plans",
+      description: "Get personalized routines and meal plans to achieve your health goals.",
+    },
+    {
+      icon: <Users className="w-8 h-8 text-blue-500" />,
+      title: "Community Support",
+      description: "Connect with peers, share experiences, and find support in a safe environment.",
+    },
+    {
+      icon: <Scale className="w-8 h-8 text-purple-500" />,
+      title: "Legal Assistance",
+      description: "Access legal resources, emergency contacts, and guides for dealing with harassment.",
+    },
+    {
+      icon: <Briefcase className="w-8 h-8 text-yellow-500" />,
+      title: "Job & Career Support",
+      description: "Find resources for professional development, job search, and networking.",
+    },
+  ];
 
   return (
-    <div className="bg-orange-100 min-h-screen">
-      <link
-        href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
-        rel="stylesheet"
-      />
-
-      <div
-        className="fixed bg-white px-10 py-1 z-10 w-full"
-        style={{ color: "var(--theme-color-dark)" }}
-      >
-        <div className="flex items-center justify-between py-2 text-5xl">
-          <div className="font-bold text-xl" style={{ color: "var(--theme-color)" }}>
-            Admin<span className="text-orange-600">Panel</span>
-          </div>
-          <div className="flex items-center">
-            <span className="material-icons-outlined p-2" style={{ fontSize: "30px" }}>
-              search
-            </span>
-            <span className="material-icons-outlined p-2" style={{ fontSize: "30px" }}>
-              notifications
-            </span>
-            <div
-              className="rounded-full inline-block h-12 w-12 ml-2"
-              style={{
-                backgroundImage:
-                  "url(https://i.pinimg.com/564x/de/0f/3d/de0f3d06d2c6dbf29a888cf78e4c0323.jpg)",
-                backgroundSize: "cover",
-              }}
-            ></div>
-          </div>
-        </div>
-      </div>
-
-      <div className="flex flex-row pt-24 px-10 pb-4">
-        <div className="w-2/12 mr-6">
-          <div className="bg-white rounded-xl shadow-lg mb-6 px-6 py-4">
-            <HexColorPicker color={color} onChange={handleColorChange} />
-            <p className="text-center mt-4" style={{ color: "var(--theme-color)" }}>
-              Selected Color: {color}
-            </p>
-          </div>
-
-          <div className="bg-white rounded-xl shadow-lg mb-6 px-6 py-4">
-            <a href="#" className="inline-block text-gray-600 hover:text-black my-4">
-              <span className="material-icons-outlined float-left pr-2">dashboard</span>
-              Home
-              <span className="material-icons-outlined float-right">keyboard_arrow_right</span>
-            </a>
-            <a href="#" className="inline-block text-gray-600 hover:text-black my-4">
-              <span className="material-icons-outlined float-left pr-2">tune</span>
-              Some menu item
-              <span className="material-icons-outlined float-right">keyboard_arrow_right</span>
-            </a>
-            <a href="#" className="inline-block text-gray-600 hover:text-black my-4">
-              <span className="material-icons-outlined float-left pr-2">file_copy</span>
-              Another menu item
-              <span className="material-icons-outlined float-right">keyboard_arrow_right</span>
-            </a>
-          </div>
-        </div>
-
-        <div className="w-10/12">
-          <div className="flex flex-row">
-            <div
-              className="bg-red-200 border border-red-300 rounded-xl w-7/12 mr-2 p-6"
-              style={{ backgroundColor: "var(--theme-color-light)" }}
-            >
-              <p className="text-5xl" style={{ color: "var(--theme-color)" }}>
-                Welcome <br />
-                <strong>Lorem Ipsum</strong>
-              </p>
-            </div>
-
-            <div
-              className="bg-orange-200 border border-orange-300 rounded-xl w-5/12 ml-2 p-6"
-              style={{ backgroundColor: "var(--theme-color-light)" }}
-            >
-              <p className="text-5xl" style={{ color: "var(--theme-color)" }}>
-                Inbox <br />
-                <strong>23</strong>
-              </p>
-              <a
-                href="#"
-                className="underline hover:no-underline inline-block mt-12 px-8 py-2"
-                style={{ backgroundColor: "var(--theme-color-dark)", color: "white" }}
-              >
-                <strong>See messages</strong>
-              </a>
-            </div>
-          </div>
-
-          <div className="flex flex-row h-64 mt-6">
-            <div className="bg-white rounded-xl shadow-lg px-6 py-4 w-4/12">
-              a
-            </div>
-            <div className="bg-white rounded-xl shadow-lg mx-6 px-6 py-4 w-4/12">
-              b
-            </div>
-            <div className="bg-white rounded-xl shadow-lg px-6 py-4 w-4/12">
-              c
+    <div className="min-h-screen bg-base-100">
+      {/* Hero Section */}
+      <header className="relative">
+        <img src="https://plus.unsplash.com/premium_photo-1679429321023-dff2ea455b0c?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Header Image" className="w-full object-cover h-64 sm:h-96" />
+        <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+          <div className="text-center">
+            <h1 className="text-4xl font-bold text-white">Raksha</h1>
+            {/* <p className="text-white mt-4">Empowering women with tools for safety, health, and success</p> */}
+            <div className="mt-6">
+              <button className="bg-blue-500 text-white px-6 py-2 rounded-md hover:bg-blue-600 transition">Get Started</button>
+              <button className="ml-4 bg-gray-200 text-gray-800 px-6 py-2 rounded-md hover:bg-gray-300 transition">Learn More</button>
             </div>
           </div>
         </div>
-      </div>
+      </header>
+
+      {/* Features Carousel */}
+      <main className="max-w-7xl mx-auto py-12 sm:px-6 lg:px-8">
+        <div className="text-center mb-12">
+          <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+            Our Key Features
+          </p>
+        </div>
+
+        {/* Carousel */}
+        <div className="carousel w-full">
+          <Carousel showThumbs={false} autoPlay infiniteLoop>
+            {features.map((feature, index) => (
+              <div key={index} className="carousel-item">
+                <DashboardFeature {...feature} />
+              </div>
+            ))}
+          </Carousel>
+        </div>
+      </main>
+
+      
     </div>
   );
 };
 
-export default AdminPanel;
+export default Dashboard;
