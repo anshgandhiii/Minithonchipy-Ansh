@@ -23,28 +23,16 @@ function App() {
         <Route path="" element={<Land/>} />
         <Route path="u" element={<Layout />}>
         
-        <Route path="/dashboard" element={<Dashboard/>}>
-          {/* Nested routes */}
-          <Route index element={
-            <>
-              <Dash/>
-            </>
-            } />
+          <Route index element={<Dashboard/>} />
           <Route path="support" element={<WomenSupport />} />
           <Route path="profile" element={<Profile />} />
           <Route path="legal" element={<Legal />} />
           <Route path="realtime-tracking" element={<RealTimeTracking />} />
         </Route>
-        <Route path="/" element={<Layout />}/>
+        
+          {/* Nested routes */}
       </Routes>
     </Router>
-  );
-    // <div className='min-h-screen w-full' style={{
-    //   backgroundImage: `url(${Bgi})`,
-    //   backgroundSize: 'cover',
-    //   backgroundPosition: 'center',
-    // }}>
-  
-}
-
+  ); 
+  };
 export default App;

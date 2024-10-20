@@ -1,7 +1,5 @@
-import React from 'react';
-import { AlertTriangle, Heart, Activity, Users, Scale, Briefcase } from 'lucide-react';
-import { Carousel } from 'react-responsive-carousel';
-import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import React, { useState, useEffect } from 'react';
+import { AlertTriangle, Heart, Activity, Users, Scale, Briefcase, Share2, Lightbulb, Book, ChevronLeft, ChevronRight, Menu } from 'lucide-react';
 
 const DashboardFeature = ({ icon, title, description }) => (
   <div className="rounded-lg shadow-lg transform transition duration-500 hover:scale-105 bg-base-200">
@@ -15,7 +13,81 @@ const DashboardFeature = ({ icon, title, description }) => (
   </div>
 );
 
+const EmpowermentFeature = ({ icon, title, onClick }) => (
+  <button
+    onClick={onClick}
+    className="flex flex-col items-center justify-center p-4 bg-base-100 rounded-lg shadow-md hover:bg-base-200 transition duration-300 mx-auto"
+    style={{ minWidth: '200px' }} // Optional: set a min width for consistency
+  >
+    {icon}
+    <span className="mt-2 text-sm font-medium text-purple-800">{title}</span>
+  </button>
+);
+
+const Carousel = ({ children }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+
+  const nextSlide = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % React.Children.count(children));
+  };
+
+  const prevSlide = () => {
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + React.Children.count(children)) % React.Children.count(children));
+  };
+
+  useEffect(() => {
+    let intervalId;
+    if (isAutoPlaying) {
+      intervalId = setInterval(nextSlide, 5000);
+    }
+    return () => clearInterval(intervalId);
+  }, [isAutoPlaying]);
+
+  return (
+    <div className="relative w-full" onMouseEnter={() => setIsAutoPlaying(false)} onMouseLeave={() => setIsAutoPlaying(true)}>
+      <div className="overflow-hidden">
+        <div className="flex transition-transform duration-300 ease-in-out" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
+          {React.Children.map(children, (child) => (
+            <div className="flex justify-center items-center w-full flex-shrink-0">{child}</div>
+          ))}
+        </div>
+      </div>
+      <button onClick={prevSlide} className="absolute top-1/2 left-2 transform -translate-y-1/2 bg-white bg-opacity-50 rounded-full p-2">
+        <ChevronLeft className="w-6 h-6" />
+      </button>
+      <button onClick={nextSlide} className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-white bg-opacity-50 rounded-full p-2">
+        <ChevronRight className="w-6 h-6" />
+      </button>
+    </div>
+  );
+};
+
+const Sidebar = ({ features, activeFeature, setActiveFeature }) => (
+  <div className="bg-base-800 w-64 p-6 h-screen text-black shadow-lg border-gray">
+    <h2 className="text-2xl font-bold mb-4">Features</h2>
+    <ul>
+      {features.map((feature, index) => (
+        <li key={index} className="mb-2">
+          <button
+            onClick={() => setActiveFeature(index)}
+            className={`flex items-center w-full text-left p-2 rounded transition duration-200 hover:bg-gray-700 ${activeFeature === index ? 'bg-purple-600' : ''}`}
+          >
+            <span className="mr-2">{feature.icon}</span>
+            <span>{feature.title}</span>
+          </button>
+        </li>
+      ))}
+    </ul>
+  </div>
+);
+
 const Dashboard = () => {
+  const [showModal, setShowModal] = useState(false);
+  const [modalContent, setModalContent] = useState({ title: '', content: '' });
+  const [activeFeature, setActiveFeature] = useState(0);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
   const features = [
     {
       icon: <AlertTriangle className="w-8 h-8 text-red-500" />,
@@ -49,44 +121,96 @@ const Dashboard = () => {
     },
   ];
 
+  const empowermentFeatures = [
+    {
+      icon: <Share2 className="w-6 h-6 text-purple-600" />,
+      title: "Share Your Story",
+      content: "A platform for women to share their experiences, challenges, and triumphs. Your story can inspire others!"
+    },
+    {
+      icon: <Lightbulb className="w-6 h-6 text-purple-600" />,
+      title: "Daily Inspiration",
+      content: "There is no limit to what we, as women, can accomplish.~Michelle Obama"
+    },
+    {
+      icon: <Book className="w-6 h-6 text-purple-600" />,
+      title: "Learn & Grow",
+      content: "Explore the fitness tab."
+    }
+  ];
+
+  const handleFeatureClick = (title, content) => {
+    setModalContent({ title, content });
+    setShowModal(true);
+  };
+
   return (
-    <div className="min-h-screen bg-base-100">
-      {/* Hero Section */}
-      <header className="relative">
-        <img src="https://plus.unsplash.com/premium_photo-1679429321023-dff2ea455b0c?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Header Image" className="w-full object-cover h-64 sm:h-96" />
-        <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-          <div className="text-center">
-            <h1 className="text-4xl font-bold text-white">Raksha</h1>
-            {/* <p className="text-white mt-4">Empowering women with tools for safety, health, and success</p> */}
-            <div className="mt-6">
-              <button className="bg-blue-500 text-white px-6 py-2 rounded-md hover:bg-blue-600 transition">Get Started</button>
-              <button className="ml-4 bg-gray-200 text-gray-800 px-6 py-2 rounded-md hover:bg-gray-300 transition">Learn More</button>
+    <div className="flex min-h-screen bg-base-100">
+      {/* Sidebar for larger screens */}
+      <div className="hidden md:block">
+        <Sidebar features={features} activeFeature={activeFeature} setActiveFeature={setActiveFeature} />
+      </div>
+
+      {/* Mobile sidebar */}
+      {isSidebarOpen && (
+        <div className="md:hidden fixed inset-0 z-50 bg-gray-800 bg-opacity-75">
+          <div className="w-64 h-full bg-white">
+            <div className="p-4 flex justify-between items-center">
+              <h2 className="text-xl font-bold">Features</h2>
+              <button onClick={() => setIsSidebarOpen(false)} className="text-gray-500 hover:text-gray-700">
+                <ChevronLeft className="w-6 h-6" />
+              </button>
             </div>
+            <Sidebar features={features} activeFeature={activeFeature} setActiveFeature={(index) => {
+              setActiveFeature(index);
+              setIsSidebarOpen(false);
+            }} />
           </div>
         </div>
-      </header>
+      )}
 
-      {/* Features Carousel */}
-      <main className="max-w-7xl mx-auto py-12 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-            Our Key Features
-          </p>
+      {/* Main content */}
+      <div className="flex-1 flex flex-col">
+        {/* Header */}
+        <button onClick={() => setIsSidebarOpen(true)} className="md:hidden p-2">
+          <Menu className="w-6 h-6" />
+        </button>
+
+        {/* Main Feature Cards */}
+        <div className="p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {features.map((feature, index) => (
+            <DashboardFeature key={index} icon={feature.icon} title={feature.title} description={feature.description} />
+          ))}
         </div>
 
-        {/* Carousel */}
-        <div className="carousel w-full">
-          <Carousel showThumbs={false} autoPlay infiniteLoop>
-            {features.map((feature, index) => (
-              <div key={index} className="carousel-item">
-                <DashboardFeature {...feature} />
-              </div>
+        {/* Empowerment Features Carousel */}
+        <div className="p-4">
+          <h2 className="text-2xl font-bold mb-4">Empowerment Features</h2>
+          <Carousel>
+            {empowermentFeatures.map((empowermentFeature, index) => (
+              <EmpowermentFeature
+                key={index}
+                icon={empowermentFeature.icon}
+                title={empowermentFeature.title}
+                onClick={() => handleFeatureClick(empowermentFeature.title, empowermentFeature.content)}
+              />
             ))}
           </Carousel>
         </div>
-      </main>
 
-      
+        {/* Modal for Empowerment Features */}
+        {showModal && (
+          <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+            <div className="bg-white rounded-lg p-6 shadow-lg w-11/12 md:w-1/3">
+              <h3 className="text-xl font-bold mb-4">{modalContent.title}</h3>
+              <p>{modalContent.content}</p>
+              <button onClick={() => setShowModal(false)} className="mt-4 px-4 py-2 bg-purple-600 text-white rounded hover:bg-purple-700">
+                Close
+              </button>
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
