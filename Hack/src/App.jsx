@@ -8,6 +8,7 @@ import WomenSupport from './components/womenSupport';
 import Layout from './components/Layout';
 import Legal from './components/legal';
 import RealTimeTracking from './components/RealTimeTracking';
+import Health from './components/health';
 
 function App() {
   const navbarHeight = '72px'; // Adjust this to match the actual height of your navbar
@@ -24,6 +25,7 @@ function App() {
             <Route path="signin" element={<Signin />} />
             <Route path="legal" element={<Legal />} />
             <Route path="realtime-tracking" element={<RealTimeTracking />} />
+            <Route path="health-tracking" element={<Health />} />
           </Route>
         </Routes>
     </Router>
