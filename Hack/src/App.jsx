@@ -8,6 +8,7 @@ import Legal from './components/legal';
 import RealTimeTracking from './components/RealTimeTracking';
 import Layout from './components/Layout'
 import Land from './components/landing'
+import Fit from './components/fitness'
 
 function App() {
   const navbarHeight = '72px'; // Adjust this to match the actual height of your navbar
@@ -31,6 +32,7 @@ function App() {
           <Route path="profile" element={<Profile />} />
           <Route path="legal" element={<Legal />} />
           <Route path="realtime-tracking" element={<RealTimeTracking />} />
+          <Route path= "fit" element={<Fit/>}/>
         </Route>
       </Routes>
     </Router>
