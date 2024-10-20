@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import Gymvideo1 from './img/video1.mp4';
+import Gymvideo1 from './img/Hack1.mp4';
 import Gymvideo2 from './img/video2.mp4';
 import Gymvideo3 from './img/video3.mp4';
 
@@ -48,7 +48,7 @@ function HeroSection() {
 
       {/* Content */}
       <div className="relative z-10 flex flex-col items-start justify-center h-full text-left text-white px-8 lg:px-16">
-        <h1 className="text-6xl lg:text-9xl font-extrabold mb-8 leading-none tracking-tighter">
+        <h1 className="text-6xl lg:text-8xl font-extrabold mb-8 leading-none tracking-tighter">
           <span className="block transform -skew-y-6 hover:skew-y-0 transition-transform duration-300">TRAIN</span>
           {/* <span className="block transform skew-y-6 hover:skew-y-0 transition-transform duration-300">YOUR BODY</span> */}
           <span className="block text-[#eb5e28]">WITH US</span>
