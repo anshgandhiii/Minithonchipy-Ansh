@@ -1,8 +1,12 @@
 import React from 'react';
-import { Shield, Heart, Dumbbell, Users, Scale, Briefcase } from 'lucide-react';
-
+import { Shield, Heart, Dumbbell, Users, Scale, Briefcase, ImageOff, Import } from 'lucide-react';
+import Navbar from './navbar';
+import HeroSection from './hero';
 const LandingPage = () => {
   return (
+    <>
+    <Navbar/>
+    <HeroSection/>
     <div className="min-h-screen bg-gradient-to-r from-blue-100 to-purple-100 text-gray-800">
       <header className="container mx-auto py-8">
         <h1 className="text-4xl font-bold text-center text-purple-600">EmpowerHer</h1>
@@ -45,6 +49,7 @@ const LandingPage = () => {
         </div>
       </footer>
     </div>
+    </>
   );
 };
 
