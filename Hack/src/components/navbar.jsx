@@ -41,8 +41,8 @@ const Navbar = () => {
                     <div className="flex shrink-0">
                         <Link aria-current="page" className="flex items-center" to="/">
                             <img
-                                className="h-7 w-auto"
-                                src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg"
+                                className="h-12 w-auto"
+                                src="https://img.freepik.com/free-vector/feminist-composition-with-grunge-fist_23-2147970265.jpg"
                                 alt="Logo"
                             />
                             <p className="sr-only">Website Title</p>

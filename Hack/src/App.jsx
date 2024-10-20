@@ -8,6 +8,7 @@ import Legal from './components/legal';
 import RealTimeTracking from './components/RealTimeTracking';
 import Layout from './components/Layout'
 import Land from './components/landing'
+import Fit from './components/fitness'
 import JobAndCareerSupport from './components/JobAndCareerSupport';
 import Dashboard from './components/dashboard'
 
@@ -29,6 +30,7 @@ function App() {
           <Route path="profile" element={<Profile />} />
           <Route path="legal" element={<Legal />} />
           <Route path="realtime-tracking" element={<RealTimeTracking />} />
+          <Route path= "fit" element={<Fit/>}/>
           <Route path="carrer" element={<JobAndCareerSupport />} />
         </Route>
         
