@@ -49,20 +49,16 @@ function HeroSection() {
       {/* Content */}
       <div className="relative z-10 flex flex-col items-start justify-center h-full text-left text-white px-8 lg:px-16">
         <h1 className="text-6xl lg:text-8xl font-extrabold mb-8 leading-none tracking-tighter">
-          <span className="block transform -skew-y-6 hover:skew-y-0 transition-transform duration-300">TRAIN</span>
+          <span className="block transform -skew-y-6 hover:skew-y-0 transition-transform duration-300">Raksha</span>
           {/* <span className="block transform skew-y-6 hover:skew-y-0 transition-transform duration-300">YOUR BODY</span> */}
-          <span className="block text-[#eb5e28]">WITH US</span>
+          <span className="block  text-pink-500">Empowering Women</span>
         </h1>
         <p className="text-lg lg:text-xl mb-8 max-w-2xl">
           Achieve your ideal body with our expertly designed workout routines. Start your journey to a healthier, stronger you today!
         </p>
         <div className="flex flex-col lg:flex-row items-start space-y-4 lg:space-y-0 lg:space-x-4">
-          <input
-            type="text"
-            placeholder="Enter your email"
-            className="px-4 py-2 text-black rounded-md focus:outline-none focus:ring-2 focus:ring-[#eb5e28] w-full lg:w-auto"
-          />
-          <button className="px-6 py-2 bg-[#eb5e28] text-white rounded-md font-semibold hover:bg-orange-600 transition duration-200 w-full lg:w-auto">
+          
+          <button className="px-6 py-2  bg-pink-500 text-white rounded-md font-semibold hover: text-pink-500 transition duration-200 w-full lg:w-auto">
             Get Started
           </button>
         </div>
