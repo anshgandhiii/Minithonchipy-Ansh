@@ -1,157 +1,153 @@
-"use client";
 import React, { useState, useEffect } from "react";
 import { HexColorPicker } from "react-colorful";
+import { Bell, User, Phone, Mail, Plus, Trash2 } from "lucide-react";
+import Butt from './button';
 
-const AdminPanel = () => {
-  const [color, setColor] = useState("#3b82f6"); // Default color (blue)
+export default function UserProfile() {
+  const [user, setUser] = useState({
+    name: "Jane Doe",
+    phone: "+1 (555) 123-4567",
+    email: "jane.doe@example.com",
+  });
+  const [emergencyContacts, setEmergencyContacts] = useState([
+    { name: "John Doe", phone: "+1 (555) 987-6543" },
+    { name: "Emma Smith", phone: "+1 (555) 456-7890" },
+  ]);
+  const [newContact, setNewContact] = useState({ name: "", phone: "" });
+  const [color, setColor] = useState("#ff69b4");
+  const [notifications, setNotifications] = useState([
+    { id: 1, message: "Welcome to Women Empowerment!", read: false },
+    { id: 2, message: "New safety feature available. Check it out!", read: false },
+  ]);
+  const [showNotifications, setShowNotifications] = useState(false);
+  const [showColorPicker, setShowColorPicker] = useState(false);
 
-  // Helper function to adjust brightness
-  const adjustColorBrightness = (col, amt) => {
-    let usePound = false;
-    if (col[0] === "#") {
-      col = col.slice(1);
-      usePound = true;
-    }
-    let num = parseInt(col, 16);
-    let r = (num >> 16) + amt;
-    let b = ((num >> 8) & 0x00ff) + amt;
-    let g = (num & 0x0000ff) + amt;
-    return (
-      (usePound ? "#" : "") +
-      (g | (b << 8) | (r << 16)).toString(16).padStart(6, "0")
-    );
-  };
-
-  // Function to apply color to CSS variables
-  const applyColorToStyles = (color) => {
-    document.documentElement.style.setProperty("--theme-color", color);
-    document.documentElement.style.setProperty(
-      "--theme-color-dark",
-      adjustColorBrightness(color, -20)
-    );
-    document.documentElement.style.setProperty(
-      "--theme-color-light",
-      adjustColorBrightness(color, 20)
-    );
-  };
-
-  const handleColorChange = (newColor) => {
-    setColor(newColor);
-    applyColorToStyles(newColor);
-  };
-
-  // Apply color when the component loads
   useEffect(() => {
-    applyColorToStyles(color);
-  }, []);
+    document.documentElement.style.setProperty("--theme-color", color);
+  }, [color]);
+
+  const handleAddContact = () => {
+    if (newContact.name && newContact.phone) {
+      setEmergencyContacts([...emergencyContacts, newContact]);
+      setNewContact({ name: "", phone: "" });
+    }
+  };
+
+  const handleRemoveContact = (index) => {
+    const updatedContacts = emergencyContacts.filter((_, i) => i !== index);
+    setEmergencyContacts(updatedContacts);
+  };
+
+  const toggleNotifications = () => {
+    setShowNotifications(!showNotifications);
+  };
+
+  const markAsRead = (id) => {
+    setNotifications(notifications.map(notif =>
+      notif.id === id ? { ...notif, read: true } : notif
+    ));
+  };
+
+  const unreadCount = notifications.filter(n => !n.read).length;
 
   return (
-    <div className="bg-orange-100 min-h-screen">
-      <link
-        href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
-        rel="stylesheet"
-      />
+    <div className="min-h-screen p-8 bg-gradient-to-r from-pink-100 to-purple-200 backdrop-blur-lg">
+      <div className="flex justify-center mb-8">
+        <Butt />
+      </div>
 
-      <div
-        className="fixed bg-white px-10 py-1 z-10 w-full"
-        style={{ color: "var(--theme-color-dark)" }}
-      >
-        <div className="flex items-center justify-between py-2 text-5xl">
-          <div className="font-bold text-xl" style={{ color: "var(--theme-color)" }}>
-            Admin<span className="text-orange-600">Panel</span>
-          </div>
-          <div className="flex items-center">
-            <span className="material-icons-outlined p-2" style={{ fontSize: "30px" }}>
-              search
-            </span>
-            <span className="material-icons-outlined p-2" style={{ fontSize: "30px" }}>
-              notifications
-            </span>
-            <div
-              className="rounded-full inline-block h-12 w-12 ml-2"
-              style={{
-                backgroundImage:
-                  "url(https://i.pinimg.com/564x/de/0f/3d/de0f3d06d2c6dbf29a888cf78e4c0323.jpg)",
-                backgroundSize: "cover",
-              }}
-            ></div>
+      <div className="flex flex-col lg:flex-row gap-8">
+        <div className="lg:w-1/3 bg-[#f7f1d9] backdrop-blur-md rounded-lg shadow-md p-6">
+          <h2 className="text-2xl font-bold mb-4" style={{ color: "var(--theme-color)" }}>Theme Color</h2>
+          <div
+            className="w-full h-20 rounded-md cursor-pointer mb-4"
+            style={{ backgroundColor: color }}
+            onClick={() => setShowColorPicker(!showColorPicker)}
+          />
+          {showColorPicker && (
+            <HexColorPicker color={color} onChange={setColor} />
+          )}
+        </div>
+
+        <div className="bg-[#f7f1d9] backdrop-blur-md rounded-lg shadow-md p-6 lg:w-2/3">
+          <h2 className="text-2xl font-bold mb-4" style={{ color: "var(--theme-color)" }}>User Profile</h2>
+          <div className="space-y-4">
+            <div className="flex items-center space-x-4">
+              <User className="text-gray-400" />
+              <input
+                type="text"
+                value={user.name}
+                onChange={(e) => setUser({ ...user, name: e.target.value })}
+                className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500"
+                placeholder="Name"
+              />
+            </div>
+            <div className="flex items-center space-x-4">
+              <Phone className="text-gray-400" />
+              <input
+                type="tel"
+                value={user.phone}
+                onChange={(e) => setUser({ ...user, phone: e.target.value })}
+                className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500"
+                placeholder="Phone Number"
+              />
+            </div>
+            <div className="flex items-center space-x-4">
+              <Mail className="text-gray-400" />
+              <input
+                type="email"
+                value={user.email}
+                onChange={(e) => setUser({ ...user, email: e.target.value })}
+                className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500"
+                placeholder="Email"
+              />
+            </div>
           </div>
         </div>
       </div>
 
-      <div className="flex flex-row pt-24 px-10 pb-4">
-        <div className="w-2/12 mr-6">
-          <div className="bg-white rounded-xl shadow-lg mb-6 px-6 py-4">
-            <HexColorPicker color={color} onChange={handleColorChange} />
-            <p className="text-center mt-4" style={{ color: "var(--theme-color)" }}>
-              Selected Color: {color}
-            </p>
-          </div>
-
-          <div className="bg-white rounded-xl shadow-lg mb-6 px-6 py-4">
-            <a href="#" className="inline-block text-gray-600 hover:text-black my-4">
-              <span className="material-icons-outlined float-left pr-2">dashboard</span>
-              Home
-              <span className="material-icons-outlined float-right">keyboard_arrow_right</span>
-            </a>
-            <a href="#" className="inline-block text-gray-600 hover:text-black my-4">
-              <span className="material-icons-outlined float-left pr-2">tune</span>
-              Some menu item
-              <span className="material-icons-outlined float-right">keyboard_arrow_right</span>
-            </a>
-            <a href="#" className="inline-block text-gray-600 hover:text-black my-4">
-              <span className="material-icons-outlined float-left pr-2">file_copy</span>
-              Another menu item
-              <span className="material-icons-outlined float-right">keyboard_arrow_right</span>
-            </a>
-          </div>
-        </div>
-
-        <div className="w-10/12">
-          <div className="flex flex-row">
-            <div
-              className="bg-red-200 border border-red-300 rounded-xl w-7/12 mr-2 p-6"
-              style={{ backgroundColor: "var(--theme-color-light)" }}
-            >
-              <p className="text-5xl" style={{ color: "var(--theme-color)" }}>
-                Welcome <br />
-                <strong>Lorem Ipsum</strong>
-              </p>
-            </div>
-
-            <div
-              className="bg-orange-200 border border-orange-300 rounded-xl w-5/12 ml-2 p-6"
-              style={{ backgroundColor: "var(--theme-color-light)" }}
-            >
-              <p className="text-5xl" style={{ color: "var(--theme-color)" }}>
-                Inbox <br />
-                <strong>23</strong>
-              </p>
-              <a
-                href="#"
-                className="underline hover:no-underline inline-block mt-12 px-8 py-2"
-                style={{ backgroundColor: "var(--theme-color-dark)", color: "white" }}
+      <div className="bg-[#f7f1d9] backdrop-blur-md rounded-lg shadow-md p-6 mt-8">
+        <h2 className="text-2xl font-bold mb-4" style={{ color: "var(--theme-color)" }}>Emergency Contacts</h2>
+        <div className="space-y-4">
+          {emergencyContacts.map((contact, index) => (
+            <div key={index} className="flex items-center justify-between bg-gray-100 p-3 rounded-md">
+              <div>
+                <p className="font-semibold">{contact.name}</p>
+                <p className="text-sm text-gray-600">{contact.phone}</p>
+              </div>
+              <button
+                onClick={() => handleRemoveContact(index)}
+                className="bg-red-500 hover:bg-red-600 text-white p-2 rounded-full"
               >
-                <strong>See messages</strong>
-              </a>
+                <Trash2 className="h-4 w-4" />
+              </button>
             </div>
-          </div>
-
-          <div className="flex flex-row h-64 mt-6">
-            <div className="bg-white rounded-xl shadow-lg px-6 py-4 w-4/12">
-              a
-            </div>
-            <div className="bg-white rounded-xl shadow-lg mx-6 px-6 py-4 w-4/12">
-              b
-            </div>
-            <div className="bg-white rounded-xl shadow-lg px-6 py-4 w-4/12">
-              c
-            </div>
+          ))}
+          <div className="flex space-x-2">
+            <input
+              type="text"
+              placeholder="Name"
+              value={newContact.name}
+              onChange={(e) => setNewContact({ ...newContact, name: e.target.value })}
+              className="flex-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500"
+            />
+            <input
+              type="tel"
+              placeholder="Phone"
+              value={newContact.phone}
+              onChange={(e) => setNewContact({ ...newContact, phone: e.target.value })}
+              className="flex-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500"
+            />
+            <button
+              onClick={handleAddContact}
+              className="text-white px-4 py-2 rounded-md flex items-center"
+              style={{ backgroundColor: color }}
+            >
+              <Plus className="h-4 w-4 mr-2" /> Add
+            </button>
           </div>
         </div>
       </div>
     </div>
   );
-};
-
-export default AdminPanel;
+}

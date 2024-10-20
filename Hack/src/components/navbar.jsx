@@ -1,7 +1,13 @@
 import React from 'react';
 import { User } from 'lucide-react';
+import Profile from './img/profile.jpg';
 
 const Navbar = () => {
+    // Alert Button Handler
+    const handleAlertClick = () => {
+        alert('Baachaoo Baachaoo');
+    };
+
     return (
         <header className="fixed inset-x-0 top-0 z-30 mx-auto w-full max-w-screen-md border border-gray-400 py-3 md:top-6 md:rounded-3xl lg:max-w-screen-lg backdrop-blur-sm bg-white/10">
             <div className="px-4">
@@ -11,7 +17,7 @@ const Navbar = () => {
                             <img
                                 className="h-7 w-auto"
                                 src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg"
-                                alt=""
+                                alt="Logo"
                             />
                             <p className="sr-only">Website Title</p>
                         </a>
@@ -20,20 +26,23 @@ const Navbar = () => {
                     <div className="hidden md:flex flex-1 items-center justify-center gap-8 pl-10">
                         <a
                             aria-current="page"
-                            className="inline-block rounded-lg px-2 py-1 text-md font-bold text-gray-900 transition-all duration-200 hover:bg-gray-100 hover:text-black hover:rounded-full"
+                            className="inline-block rounded-lg px-2 py-1 text-md font-bold transition-all duration-200 hover:bg-gray-100 hover:rounded-full"
                             href="#"
+                            style={{ color: '#D4EBFD', fontFamily: 'Montserrat, sans-serif' }} // Cyan color and custom font
                         >
                             How it works
                         </a>
                         <a
-                            className="inline-block rounded-lg px-2 py-1 text-md font-bold text-gray-900 transition-all duration-200 hover:bg-gray-100 hover:text-black hover:rounded-full"
+                            className="inline-block rounded-lg px-2 py-1 text-md font-bold transition-all duration-200 hover:bg-gray-100 hover:rounded-full"
                             href="#"
+                            style={{ color: '#D4EBFD', fontFamily: 'Montserrat, sans-serif' }} // Cyan color and custom font
                         >
                             Pricing
                         </a>
                         <a
-                            className="inline-block rounded-lg px-2 py-1 text-md font-bold text-gray-900 transition-all duration-200 hover:bg-gray-100 hover:text-black hover:rounded-full"
+                            className="inline-block rounded-lg px-2 py-1 text-md font-bold transition-all duration-200 hover:bg-gray-100 hover:rounded-full"
                             href="#"
+                            style={{ color: '#D4EBFD', fontFamily: 'Montserrat, sans-serif' }} // Cyan color and custom font
                         >
                             Do it
                         </a>
@@ -51,8 +60,19 @@ const Navbar = () => {
                         >
                             Login
                         </a>
-                        <button className="inline-flex items-center justify-center rounded-full bg-gray-200 p-2 text-gray-600 transition-all duration-150 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2">
-                            <User size={24} />
+                        {/* Alert Button */}
+                        <button
+                            onClick={handleAlertClick}
+                            className="inline-flex items-center justify-center rounded-full bg-red-600 px-3 py-2 text-sm font-bold text-white shadow-sm transition-all duration-150 hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-offset-2"
+                        >
+                            Alert
+                        </button>
+                        <button className="inline-flex items-center justify-center rounded-full bg-gray-200 p-2 w-10 h-10 text-gray-600 transition-all duration-150 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2">
+                            <img
+                                src={Profile}
+                                alt="Profile"
+                                className="w-full h-full object-cover rounded-full "
+                            />
                             <span className="sr-only">Profile</span>
                         </button>
                     </div>
