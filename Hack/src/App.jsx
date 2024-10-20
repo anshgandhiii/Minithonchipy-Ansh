@@ -8,8 +8,10 @@ import Legal from './components/legal';
 import RealTimeTracking from './components/RealTimeTracking';
 import Layout from './components/Layout'
 import Land from './components/landing'
+import Fit from './components/fitness'
 import JobAndCareerSupport from './components/JobAndCareerSupport';
 import Dashboard from './components/dashboard'
+import Health from './components/health';
 
 function App() {
   const navbarHeight = '72px'; // Adjust this to match the actual height of your navbar
@@ -29,11 +31,27 @@ function App() {
           <Route path="profile" element={<Profile />} />
           <Route path="legal" element={<Legal />} />
           <Route path="realtime-tracking" element={<RealTimeTracking />} />
+          <Route path= "fit" element={<Fit/>}/>
           <Route path="carrer" element={<JobAndCareerSupport />} />
         </Route>
         
           {/* Nested routes */}
       </Routes>
+        </Route>
+      </Routes>
+        <Routes>
+          {/* Wrap the Layout component around routes */}
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Dash />} />
+            <Route path="support" element={<WomenSupport />} />
+            <Route path="profile" element={<Profile />} />
+            <Route path="login" element={<Login />} />
+            <Route path="signin" element={<Signin />} />
+            <Route path="legal" element={<Legal />} />
+            <Route path="realtime-tracking" element={<RealTimeTracking />} />
+            <Route path="health-tracking" element={<Health />} />
+          </Route>
+        </Routes>
     </Router>
   ); 
   };
