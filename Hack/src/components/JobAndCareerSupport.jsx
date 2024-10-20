@@ -24,16 +24,26 @@ const JobAndCareerSupport = () => {
   ];
 
   return (
-    <div className="bg-pink-50 min-h-screen p-8">
+    <div className="bg-base min-h-screen p-8">
       <h1 className="text-4xl font-bold text-pink-800 mb-8 text-center">Job and Career Support</h1>
-
+      <div className="bg-white rounded-lg shadow-lg p-6">
+        <h2 className="text-2xl font-semibold text-pink-800 mb-4">Search Resources</h2>
+        <div className="flex items-center bg-pink-100 rounded-lg p-2">
+          <input
+            type="text"
+            placeholder="Search for resources..."
+            className="flex-grow bg-transparent outline-none text-pink-800 placeholder-pink-500"
+          />
+          <FaSearch className="text-pink-600 ml-2" />
+        </div>
+      </div>
       <div className="bg-white rounded-lg shadow-lg p-6 mb-8">
         <div className="flex justify-center space-x-4 mb-6">
           <button
             className={`px-4 py-2 rounded-full ${
               activeTab === "resources"
-                ? "bg-pink-600 text-white"
-                : "bg-pink-200 text-pink-800"
+                ? "bg-purple-600 text-white"
+                : "bg-purple-200 text-purple-800"
             }`}
             onClick={() => setActiveTab("resources")}
           >
@@ -42,8 +52,8 @@ const JobAndCareerSupport = () => {
           <button
             className={`px-4 py-2 rounded-full ${
               activeTab === "tools"
-                ? "bg-pink-600 text-white"
-                : "bg-pink-200 text-pink-800"
+                ? "bg-purple-600 text-white"
+                : "bg-purple-200 text-purple-800"
             }`}
             onClick={() => setActiveTab("tools")}
           >
@@ -52,8 +62,8 @@ const JobAndCareerSupport = () => {
           <button
             className={`px-4 py-2 rounded-full ${
               activeTab === "courses"
-                ? "bg-pink-600 text-white"
-                : "bg-pink-200 text-pink-800"
+                ? "bg-purple-600 text-white"
+                : "bg-purple-200 text-purple-800"
             }`}
             onClick={() => setActiveTab("courses")}
           >
@@ -62,8 +72,8 @@ const JobAndCareerSupport = () => {
           <button
             className={`px-4 py-2 rounded-full ${
               activeTab === "networking"
-                ? "bg-pink-600 text-white"
-                : "bg-pink-200 text-pink-800"
+                ? "bg-purple-600 text-white"
+                : "bg-purple-200 text-purple-800"
             }`}
             onClick={() => setActiveTab("networking")}
           >
@@ -125,7 +135,7 @@ const JobAndCareerSupport = () => {
                   <p className="text-pink-600">Duration: {course.duration}</p>
                   <p className="text-pink-600">Instructor: {course.instructor}</p>
                   <p className="text-pink-600">Rating: {course.rating}/5</p>
-                  <button className="mt-4 bg-pink-500 text-white px-4 py-2 rounded hover:bg-pink-600 transition duration-300">
+                  <button className="mt-4 bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700 transition duration-300">
                     Enroll Now
                   </button>
                 </div>
@@ -143,7 +153,7 @@ const JobAndCareerSupport = () => {
                   <h3 className="text-lg font-semibold text-pink-700 mb-2">{event.title}</h3>
                   <p className="text-pink-600">Date: {event.date}</p>
                   <p className="text-pink-600">Type: {event.type}</p>
-                  <button className="mt-4 bg-pink-500 text-white px-4 py-2 rounded hover:bg-pink-600 transition duration-300">
+                  <button className="mt-4 bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700 transition duration-300">
                     Register
                   </button>
                 </div>
@@ -151,18 +161,6 @@ const JobAndCareerSupport = () => {
             </div>
           </div>
         )}
-      </div>
-
-      <div className="bg-white rounded-lg shadow-lg p-6">
-        <h2 className="text-2xl font-semibold text-pink-800 mb-4">Search Resources</h2>
-        <div className="flex items-center bg-pink-100 rounded-lg p-2">
-          <input
-            type="text"
-            placeholder="Search for resources..."
-            className="flex-grow bg-transparent outline-none text-pink-800 placeholder-pink-500"
-          />
-          <FaSearch className="text-pink-600 ml-2" />
-        </div>
       </div>
     </div>
   );

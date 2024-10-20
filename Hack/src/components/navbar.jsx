@@ -1,10 +1,36 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { User } from 'lucide-react';
 import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 
 const Navbar = () => {
+    const [visible, setVisible] = useState(true);
+    const [lastScrollY, setLastScrollY] = useState(0);
+
+    // Alert Button Handler
+    const handleAlertClick = () => {
+        alert('Baachaoo Baachaoo');
+    };
+
+    const handleScroll = () => {
+        if (window.scrollY > lastScrollY) {
+            setVisible(false); // Scrolling down
+        } else {
+            setVisible(true); // Scrolling up
+        }
+        setLastScrollY(window.scrollY);
+    };
+
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, [lastScrollY]);
+
     return (
-        <header className="fixed inset-x-0 top-0 z-30 mx-auto w-full max-w-screen-md border border-gray-400 py-3 md:top-6 md:rounded-3xl lg:max-w-screen-lg backdrop-blur-sm bg-white/10">
+        <header
+            className={`fixed inset-x-0 top-0 z-30 mx-auto w-full max-w-screen-md border border-gray-500 py-3 md:top-6 md:rounded-3xl lg:max-w-screen-lg backdrop-blur-sm bg-white/10 transition-transform duration-300 ${visible ? 'translate-y-0' : '-translate-y-full'}`}
+        >
             <div className="px-4">
                 <div className="flex items-center justify-between">
                     <div className="flex shrink-0">
@@ -12,7 +38,7 @@ const Navbar = () => {
                             <img
                                 className="h-7 w-auto"
                                 src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg"
-                                alt=""
+                                alt="Logo"
                             />
                             <p className="sr-only">Website Title</p>
                         </Link>
