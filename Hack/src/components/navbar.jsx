@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { User } from 'lucide-react';
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
     const [visible, setVisible] = useState(true);
@@ -46,23 +46,23 @@ const Navbar = () => {
                     {/* Centered Links Section */}
                     <div className="hidden md:flex flex-1 items-center justify-center gap-8 pl-10">
                         <Link
-                            aria-current="Legal Support"
+                            aria-current="Home (Dashboard)"
                             className="inline-block rounded-lg px-2 py-1 text-md font-bold text-gray-900 transition-all duration-200 hover:bg-gray-100 hover:text-black hover:rounded-full"
-                            to="legal"
+                            to="/u" // Redirect to the dashboard
                         >
-                            How it works
+                            Home (Dashboard)
                         </Link>
                         <Link
                             className="inline-block rounded-lg px-2 py-1 text-md font-bold text-gray-900 transition-all duration-200 hover:bg-gray-100 hover:text-black hover:rounded-full"
-                            to="#"
+                            to="/u/legal" // Updated to redirect to /u/legal
                         >
-                            Pricing
+                            Legal
                         </Link>
                         <Link
                             className="inline-block rounded-lg px-2 py-1 text-md font-bold text-gray-900 transition-all duration-200 hover:bg-gray-100 hover:text-black hover:rounded-full"
-                            to="#"
+                            to="/u/support" // Updated to redirect to /u/support
                         >
-                            Do it
+                            Support
                         </Link>
                     </div>
                     <div className="flex items-center justify-end gap-3">

@@ -9,6 +9,7 @@ import RealTimeTracking from './components/RealTimeTracking';
 import Layout from './components/Layout'
 import Land from './components/landing'
 import JobAndCareerSupport from './components/JobAndCareerSupport';
+import Dashboard from './components/dashboard'
 
 function App() {
   const navbarHeight = '72px'; // Adjust this to match the actual height of your navbar
@@ -22,10 +23,11 @@ function App() {
         <Route path="signin" element={<Signin />} />
         <Route path="" element={<Land/>} />
         <Route path="u" element={<Layout />}>
+        
           {/* Nested routes */}
           <Route index element={
             <>
-              <Dash/>
+              <Dashboard/>
             </>
             } />
           <Route path="support" element={<WomenSupport />} />
@@ -37,11 +39,7 @@ function App() {
       </Routes>
     </Router>
   );
-    // <div className='min-h-screen w-full' style={{
-    //   backgroundImage: `url(${Bgi})`,
-    //   backgroundSize: 'cover',
-    //   backgroundPosition: 'center',
-    // }}>
+    
   
 }
 

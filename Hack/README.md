@@ -8,3 +8,6 @@ Currently, two official plugins are available:
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
 # npm install @radix-ui/react-slot @radix-ui/react-dialog class-variance-authority class-names lucide-react
+# npm install react-slick slick-carousel
+# npm install recharts
+
