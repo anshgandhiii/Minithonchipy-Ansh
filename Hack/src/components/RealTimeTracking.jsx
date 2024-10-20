@@ -26,16 +26,22 @@ const SafeRoutesApp = () => {
   return (
     <div className="flex flex-col h-screen">
       {/* Header */}
-      <header className="bg-purple-700 text-white p-4 flex justify-between items-center z-40 relative">
+      <header className="bg-base text-gray-800 p-4 mt-4 shadow-md flex justify-between items-center rounded-lg">
         <button onClick={toggleMenu} className="md:hidden">
-          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
-        <h1 className="text-xl font-bold">Real-Time Tracking & Safe Routes</h1>
-        <div className="flex space-x-2">
-          <button><Bell size={24} /></button>
-          <button><Settings size={24} /></button>
+        <h1 className="flex-grow text-3xl text-blue-800 text-center font-bold">Real-Time Tracking & Safe Routes</h1>
+        <div className="flex space-x-4">
+            <button className="hover:bg-gray-200 rounded p-2 transition duration-200">
+            <Bell size={24} />
+            </button>
+            <button className="hover:bg-gray-200 rounded p-2 transition duration-200">
+            <Settings size={24} />
+            </button>
         </div>
       </header>
+
+
 
       {/* Main content */}
       <main className="flex-grow flex relative">
@@ -56,7 +62,7 @@ const SafeRoutesApp = () => {
         </aside>
 
         {/* Map container */}
-        <div className="flex-grow relative bg-gray-200 overflow-hidden z-0">
+        <div className="flex-grow relative bg-base overflow-hidden z-0">
           <div className="h-[70%] md:h-[80%] pt-16"> {/* Set the height for the map container and added padding */}
             <MapComponent safeZones={safeZones} userLocation={userLocation} />
           </div>

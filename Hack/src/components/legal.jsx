@@ -94,7 +94,7 @@ const LegalAssistanceResources = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-100 to-white">
+    <div className="min-h-screen bg-base">
       <div className="max-w-6xl mx-auto p-6">
         <header className="text-center mb-12">
           <h1 className="text-5xl font-bold mb-4 text-blue-800 flex items-center justify-center">
