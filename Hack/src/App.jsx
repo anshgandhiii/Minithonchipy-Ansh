@@ -9,6 +9,8 @@ import RealTimeTracking from './components/RealTimeTracking';
 import Layout from './components/Layout'
 import Land from './components/landing'
 import Fit from './components/fitness'
+import JobAndCareerSupport from './components/JobAndCareerSupport';
+import Dashboard from './components/dashboard'
 
 function App() {
   const navbarHeight = '72px'; // Adjust this to match the actual height of your navbar
@@ -22,27 +24,19 @@ function App() {
         <Route path="signin" element={<Signin />} />
         <Route path="" element={<Land/>} />
         <Route path="u" element={<Layout />}>
-          {/* Nested routes */}
-          <Route index element={
-            <>
-              <Dash/>
-            </>
-            } />
+        
+          <Route index element={<Dashboard/>} />
           <Route path="support" element={<WomenSupport />} />
           <Route path="profile" element={<Profile />} />
           <Route path="legal" element={<Legal />} />
           <Route path="realtime-tracking" element={<RealTimeTracking />} />
           <Route path= "fit" element={<Fit/>}/>
+          <Route path="carrer" element={<JobAndCareerSupport />} />
         </Route>
+        
+          {/* Nested routes */}
       </Routes>
     </Router>
-  );
-    // <div className='min-h-screen w-full' style={{
-    //   backgroundImage: `url(${Bgi})`,
-    //   backgroundSize: 'cover',
-    //   backgroundPosition: 'center',
-    // }}>
-  
-}
-
+  ); 
+  };
 export default App;
