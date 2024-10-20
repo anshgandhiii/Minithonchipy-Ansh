@@ -50,7 +50,7 @@ const Navbar = () => {
                             className="inline-block rounded-lg px-2 py-1 text-md font-bold text-gray-900 transition-all duration-200 hover:bg-gray-100 hover:text-black hover:rounded-full"
                             to="/u" // Redirect to the dashboard
                         >
-                            Home (Dashboard)
+                            Home 
                         </Link>
                         <Link
                             className="inline-block rounded-lg px-2 py-1 text-md font-bold text-gray-900 transition-all duration-200 hover:bg-gray-100 hover:text-black hover:rounded-full"
