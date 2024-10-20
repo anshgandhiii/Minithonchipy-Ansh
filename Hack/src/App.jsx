@@ -33,25 +33,11 @@ function App() {
           <Route path="realtime-tracking" element={<RealTimeTracking />} />
           <Route path= "fit" element={<Fit/>}/>
           <Route path="carrer" element={<JobAndCareerSupport />} />
+          <Route path="mentalHealth" element={<Health />} />
         </Route>
         
           {/* Nested routes */}
       </Routes>
-        </Route>
-      </Routes>
-        <Routes>
-          {/* Wrap the Layout component around routes */}
-          <Route path="/" element={<Layout />}>
-            <Route index element={<Dash />} />
-            <Route path="support" element={<WomenSupport />} />
-            <Route path="profile" element={<Profile />} />
-            <Route path="login" element={<Login />} />
-            <Route path="signin" element={<Signin />} />
-            <Route path="legal" element={<Legal />} />
-            <Route path="realtime-tracking" element={<RealTimeTracking />} />
-            <Route path="health-tracking" element={<Health />} />
-          </Route>
-        </Routes>
     </Router>
   ); 
   };

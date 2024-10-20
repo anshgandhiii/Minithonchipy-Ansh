@@ -20,8 +20,9 @@ const SafeRoutesApp = () => {
 
   const sendEmergencyAlert = () => {
     // Implement emergency alert logic here
-    console.log('Emergency alert sent!');
-  };
+    alert('Emergency alert sent!');
+};
+
 
   return (
     <div className="flex flex-col h-screen">
@@ -106,15 +107,19 @@ const SafeRoutesApp = () => {
             <div className="space-y-2 mb-4">
               <label className="flex items-center">
                 <input type="checkbox" className="mr-2" />
-                Jane Doe
+                Dip Jain
               </label>
               <label className="flex items-center">
                 <input type="checkbox" className="mr-2" />
-                John Smith
+                Ansh Gandhi
               </label>
               <label className="flex items-center">
                 <input type="checkbox" className="mr-2" />
-                Emily Johnson
+                Anurag Nair
+              </label>
+              <label className="flex items-center">
+                <input type="checkbox" className="mr-2" />
+                Kush Nhayade
               </label>
             </div>
             <div className="flex justify-end space-x-2">
@@ -127,7 +132,7 @@ const SafeRoutesApp = () => {
               <button
                 onClick={() => {
                   // Implement share location logic here
-                  console.log('Location shared');
+                  alert('Location shared');
                   toggleShareModal();
                 }}
                 className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"

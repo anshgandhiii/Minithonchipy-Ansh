@@ -8,7 +8,7 @@ const Layout = () => {
     <div style={{ paddingTop: navbarHeight }}> 
       <Navbar />
       <Outlet />
-      <footer className="bottom-0 w-full bg-white text-center p-4">
+      <footer className="bottom-0 w-full bg-base text-center p-4">
         <p>© 2024 Raksha-ChaiPy</p>
       </footer>
     </div>

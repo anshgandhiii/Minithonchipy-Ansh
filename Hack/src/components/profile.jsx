@@ -10,8 +10,8 @@ export default function UserProfile() {
     email: "jane.doe@example.com",
   });
   const [emergencyContacts, setEmergencyContacts] = useState([
-    { name: "John Doe", phone: "+1 (555) 987-6543" },
-    { name: "Emma Smith", phone: "+1 (555) 456-7890" },
+    { name: "Dip Jain", phone: "+1 (555) 987-6543" },
+    { name: "Ansh Gandhi", phone: "+1 (555) 456-7890" },
   ]);
   const [newContact, setNewContact] = useState({ name: "", phone: "" });
   const [color, setColor] = useState("#ff69b4");
