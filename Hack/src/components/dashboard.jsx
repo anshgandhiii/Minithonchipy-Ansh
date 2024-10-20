@@ -62,25 +62,29 @@ const Carousel = ({ children }) => {
     </div>
   );
 };
+import { Link } from 'react-router-dom';
 
+// Inside the Sidebar component
 const Sidebar = ({ features, activeFeature, setActiveFeature }) => (
   <div className="bg-base-800 w-64 p-6 h-screen text-black shadow-lg border-gray">
     <h2 className="text-2xl font-bold mb-4">Features</h2>
     <ul>
       {features.map((feature, index) => (
         <li key={index} className="mb-2">
-          <button
+          <Link
+            to={feature.route} // Add the route here
             onClick={() => setActiveFeature(index)}
             className={`flex items-center w-full text-left p-2 rounded transition duration-200 hover:bg-gray-700 ${activeFeature === index ? 'bg-purple-600' : ''}`}
           >
             <span className="mr-2">{feature.icon}</span>
             <span>{feature.title}</span>
-          </button>
+          </Link>
         </li>
       ))}
     </ul>
   </div>
 );
+
 
 const Dashboard = () => {
   const [showModal, setShowModal] = useState(false);
@@ -93,33 +97,40 @@ const Dashboard = () => {
       icon: <AlertTriangle className="w-8 h-8 text-red-500" />,
       title: "Real-Time Tracking & Safe Routes",
       description: "Share location, send alerts, and find safe routes based on user feedback and official ratings.",
+      route: "/u/realtime-tracking", // Added route
     },
     {
       icon: <Heart className="w-8 h-8 text-pink-500" />,
       title: "Health & Mental Wellness",
       description: "Track menstrual cycles, access health tips, and connect with mental health resources.",
+      route: "/u/mentalHealth", // Added route
     },
     {
       icon: <Activity className="w-8 h-8 text-green-500" />,
       title: "Fitness & Nutrition Plans",
       description: "Get personalized routines and meal plans to achieve your health goals.",
+      route: "/u/fit", // Added route
     },
     {
       icon: <Users className="w-8 h-8 text-blue-500" />,
       title: "Community Support",
       description: "Connect with peers, share experiences, and find support in a safe environment.",
+      route: "/u/support", // Added route
     },
     {
       icon: <Scale className="w-8 h-8 text-purple-500" />,
       title: "Legal Assistance",
       description: "Access legal resources, emergency contacts, and guides for dealing with harassment.",
+      route: "/u/legal", // Added route
     },
     {
       icon: <Briefcase className="w-8 h-8 text-yellow-500" />,
       title: "Job & Career Support",
       description: "Find resources for professional development, job search, and networking.",
+      route: "/u/carrer", // Added route
     },
   ];
+  
 
   const empowermentFeatures = [
     {
