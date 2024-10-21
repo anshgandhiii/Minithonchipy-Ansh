@@ -8,7 +8,7 @@ function HeroSection() {
   const videoRef = useRef(null);
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
 
-  const videos = [Gymvideo1, Gymvideo2, Gymvideo3]; // Array of video sources
+  const videos = [Gymvideo1]; // Array of video sources
 
   useEffect(() => {
     const videoElement = videoRef.current;
