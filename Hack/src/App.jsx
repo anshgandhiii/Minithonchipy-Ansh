@@ -6,6 +6,7 @@ import Signin from './components/realsign'
 import Profile from './components/profile'
 import Hero from './components/hero'
 import Dash  from './components/dashboard'
+import Dashy from './components/dash';
 
 function App() {
   const navbarHeight = '72px';  // Adjust this to match the actual height of your navbar
@@ -26,6 +27,8 @@ function App() {
         <Profile/>
         <Dash/>
       {/* </div> */}
+      <Dashy/>
+
 
     </div>
   )
