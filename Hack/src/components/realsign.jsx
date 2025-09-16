@@ -1,3 +1,4 @@
+import { Link} from 'react-router-dom'
 import React from 'react';
 
 const CreateAccount = () => {
@@ -11,7 +12,7 @@ const CreateAccount = () => {
                         {/* Col */}
                         <div
                             className="w-full h-auto bg-gray-400 dark:bg-gray-800 hidden lg:block lg:w-5/12 bg-cover rounded-l-lg"
-                            style={{ backgroundImage: "" }}
+                            style={{ backgroundImage: "url('https://images.unsplash.com/photo-1546514714-df0ccc50d7bf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=667&q=80')" }}
                         ></div>
                         {/* Col */}
                         <div className="w-full lg:w-7/12 bg-white dark:bg-gray-700 p-5 rounded-lg lg:rounded-l-none">
@@ -92,9 +93,7 @@ const CreateAccount = () => {
                                     </a>
                                 </div>
                                 <div className="text-center">
-                                    <a className="inline-block text-sm text-blue-500 dark:text-blue-500 align-baseline hover:text-blue-800" href="./index.html">
-                                        Already have an account? Login!
-                                    </a>
+                                <Link to="/login" className="text-xs text-blue-500 uppercase">Already have an account? Login!</Link>
                                 </div>
                             </form>
                         </div>
